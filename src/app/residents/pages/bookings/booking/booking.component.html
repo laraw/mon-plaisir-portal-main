@@ -1,0 +1,168 @@
+<ng-template #content let-modal>
+  <!-- <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">  -->
+  <div class="modal-header">
+    <h4 class="modal-title">  Make Gym Booking   </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      
+    <div class="calendar-wrapper" >
+      <div class="calendar-scroller">
+        <div    (click)="showPreviousWeek()"  class="calendar-arrow-previous"
+         role="button" tabindex="-1"><i
+            class="calendar-arrow-previous-icon" [ngClass]="{'disabled': currentWeekNum == 1 }" ></i> 
+          <div   (click)="showPreviousWeek()"   class="calendar-arrow-previous-icon-after"  style="inset: -8px;"></div>
+        </div>
+        <span id=""><span class="calendar-date-year" dir="auto">{{ currentMonthYr }}</span></span>
+        <div  (click)="showNextWeek()"  class="calendar-arrow-next" role="button" tabindex="-1"><i
+            class="calendar-arrow-next-icon" [ngClass]="{'disabled': currentWeekNum == 4  }"  ></i>
+          <div    class="calendar-arrow-next-icon-after"  style="inset: -8px;"></div>
+        </div>
+      </div>
+      <div aria-label="Calendar" class="calendar"  tabindex="0">
+        <div class="calendar-days">
+        
+          <div class=" calendar-day-wrapper"><span class="calendar-day-span-wrapper" dir="auto"><span
+                class="calendar-day">Mon</span></span></div>
+          <div class="calendar-day-wrapper"><span class="calendar-day-span-wrapper" dir="auto"><span
+                class="calendar-day">Tues</span></span></div>
+          <div class="calendar-day-wrapper"><span class="calendar-day-span-wrapper" dir="auto"><span
+                class="calendar-day">Wed</span></span></div>
+          <div class="calendar-day-wrapper"><span class="calendar-day-span-wrapper" dir="auto"><span
+                class="calendar-day">Thurs</span></span></div>
+          <div class="calendar-day-wrapper"><span class="calendar-day-span-wrapper" dir="auto"><span
+                class="calendar-day">Fri</span></span></div>
+          <div class="calendar-day-wrapper"><span class="calendar-day-span-wrapper" dir="auto"><span
+                class="calendar-day">Sat</span></span></div>
+                <div class="calendar-day-wrapper"><span class="calendar-day-span-wrapper" dir="auto"><span
+                  class="calendar-day">Sun</span></span></div>
+        </div>
+        <div class="calendar-dates-wrapper" role="row">
+           <button class="calendar-dates-grid-cell-wrapper" 
+          [disabled]="!day.isAvailable"
+          [style.pointer-events]="!day.isAvailable ? 'none' : 'auto'"
+          (click)="selectDay(day.day)"
+        
+          [ngClass]="{'selected': day.day.getDate() == selectedDay.getDate() , 'disabled': !day.isAvailable }" 
+           *ngFor="let day of daysofCurrentWeek"> 
+           <!-- <div class="calendar-dates-grid-cell-wrapper" 
+           *ngFor="let day of daysofCurrentWeek"
+           [ngClass]="{'selected': day.getDate() == selectedDay.getDate() }" 
+           > -->
+            <div class="calendar-dates-grid-cell-wrapper-2" >
+              <div   class="calendar-dates-grid-cell" 
+                tabindex="-1">
+
+                 <span class="calendar-dates-grid-cell-value"
+                  [ngClass]="{'selected': day.day.getDate() == selectedDay.getDate(), 'disabled': !day.isAvailable }" 
+                 dir="auto">{{ day.day | date: 'dd' }}</span>
+
+                <div class="calendar-dates-grid-cell-value-after"  style="inset: -3px;"></div>
+              </div>
+            </div>
+          </button>
+
+        </div>
+      </div>
+      <div class="row">&nbsp;</div>
+      <div class="row text-center">
+        <div class="col">
+          <span class="time-slot-date-value " dir="auto"> {{ selectedDate }}
+    
+          </span>
+        </div>
+        
+      </div>
+      <div class="row">&nbsp;</div>
+      <table class="table times" *ngIf="isDataAvailable">
+      
+        <tr class="table-times-row"   *ngFor="let chunk of dayBookings | chunks: getChunks()">
+          <td (click)="selectedBooking(booking)" *ngFor="let booking of chunk"> 
+             <span (disabled)="booking.availableSlots <= 0" class="badge badge-lg badge-secondary"
+              [ngClass]="{'disabled': booking.availableSlots <= 0, 'selected': bookingSelected(booking) } ">
+               {{ booking.startTime }} 
+               <span *ngIf="booking.startTimeHr >= 12">PM</span>
+               <span *ngIf="booking.startTimeHr < 12">AM</span>
+              </span> </td>
+        </tr>
+      </table>
+<!--    
+      <div class="row">
+        <div class="col">
+          <strong> Selected bookings: </strong>
+          <ul>
+            <li *ngFor="let selected of selectedBookings">
+              {{ selected.bookingDate.toDate() | date: 'dd-MM-yyy' }} {{ selected.startTime }}
+              <span *ngIf="selected.startTimeHr >= 12">PM</span>
+              <span *ngIf="selected.startTimeHr < 12">AM</span>
+            
+              
+            </li>
+          </ul>
+        </div>
+
+      </div> -->
+    </div>
+    
+
+      
+
+   
+  </div>
+
+  <div class="modal-footer">
+      <button (click)="saveBooking()" class="btn btn-primary" [disabled]="selectedTimeSlots <= 0" >
+        <i class="fa  fa-save"> </i>Save
+      </button>
+      <button
+        type="button"
+        class="btn btn-light"
+        (click)="modal.close('Close click')"
+      >
+      <i class="fa fa-times"></i>
+        Close
+      </button>
+    </div>
+  <!-- </form> -->
+  </ng-template>
+  
+  <div class="card card-stats">
+  <div class="card-body ">
+    <div class="row">
+      <div class="col-5 col-md-4">
+        <div class="icon-big text-center icon-warning">
+          <i class="nc-icon nc-user-run text-primary"></i>
+        </div>
+      </div>
+      <div *ngIf="dayBookings" class="col-7 col-md-8">
+        <div class="numbers">
+          Make a gym booking
+        </div>
+        <div class="float-right">
+          There are {{ remainingForDay }} spots left today
+        </div>
+
+        
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="card-footer ">
+    <hr>
+    <div class="stats">
+   
+      <a (click)="openLg(content)" class="link"> <i class="fa fa-pencil"></i> Make booking  </a>
+    </div>
+  </div>
+</div>

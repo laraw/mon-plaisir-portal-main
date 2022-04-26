@@ -1,0 +1,50 @@
+
+<div class="row fadeIn first">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h4 class="card-title">Maintenance requests</h4></div>
+      <div class="card-body">
+        <div *ngIf="!showMaintenance">No maintenance requests to display.</div>
+        <div class="table-responsive" *ngIf="showMaintenance">
+          <table class="table">
+            <thead class="text-primary">
+              <th>Date Logged</th>
+              <th>Classification</th>
+              <th>Description</th>
+              <th>Logged By </th>
+              <th>Priority</th>
+              <th>Current Status</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let maintenance of maintenanceRequestsFiltered">
+                <td>  {{ maintenance.date.toDate() | date:'dd-MMM-y' }}  </td>
+                <td> {{ maintenance.classification }} </td>
+                <td> {{ maintenance.description }} </td>
+                <td> {{ maintenance.userLoggedFirstName }}  {{ maintenance.userLoggedLastName }} </td>
+                <td>  <span *ngIf="maintenance.priority"> <i class="fa fa-circle text-danger"></i> High </span>  <span *ngIf="!maintenance.priority"> <i class="fa fa-circle text-primary"></i> Normal</span>   </td>
+                <td> 
+                    <span *ngIf="maintenance.currentStatus == 'open'">  <i class="fa fa-circle text-success"></i> {{ maintenance.currentStatus }} </span> 
+                    <span *ngIf="maintenance.currentStatus == 'completed'">  <i class="fa fa-circle text-danger"></i> {{ maintenance.currentStatus }} </span>
+                </td>
+                <td>  <app-update-maintenance [maintenancerequest]="maintenance"></app-update-maintenance> 
+                    <br>
+                    <app-maintenance-history [maintenancerequest]="maintenance"> </app-maintenance-history>
+                 </td>
+              </tr>
+              
+            </tbody>
+          </table>
+          <nav *ngIf="totalPages > 1" aria-label="Page navigation ">
+            <ul class="pagination">
+              <li  class="page-item"><a class="page-link" *ngIf="currentPage != 1" (click)="previous()">Previous</a></li>
+              <li *ngFor="let in of counter(totalPages) ;let i = index" class="page-item"><a class="page-link" (click)="selectPage(i+1)">{{i + 1}} </a></li>
+  
+              <li class="page-item"><a class="page-link" *ngIf="currentPage != totalPages" (click)="next()">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="row fadeIn first" *ngIf="user">
+  <div class="col-md-4">
+    <div class="card card-user">
+      <div class="image">
+        <img src="assets/img/mp_user_background_large.jpg" alt="...">
+      </div>
+
+      <div class="card-body">
+        <div class="author">
+        
+            
+            <app-image-upload [contactInitials]="contactInitials" [path]="photoPath" (fileCompleteUpload)="setUserProfileImage($event)"></app-image-upload>
+    
+            <h5 class="title"> </h5>
+      
+          <p class="description">
+             {{ user.about }}
+          </p>
+          <p class="description">
+            <i> {{ user.email }} </i>
+          </p>
+        </div>
+        
+      </div>
+      <div class="card-footer">
+        <hr>
+        <!-- <div class="button-container">
+          <div class="row">
+
+
+            <div class="ccol-lg-2 col-md-6 col-6 ml-auto">
+              <h5>50
+                <br>
+                <small>action items completed</small>
+              </h5>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-md-8">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Edit Profile</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
+
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="firstName">
+              </div>
+            </div>
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label>Unit No</label>
+                <input type="text"  [ngClass]="{'is-invalid' : userEditForm.get('UnitNo').invalid && userEditForm.get('UnitNo').touched }"  class="form-control" formControlName="UnitNo">
+              </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                  <label for="">Mobile phone</label>
+                  <input type="text" formControlName="phone"
+                    class="form-control"
+                     [ngClass]="{'is-invalid' : userEditForm.get('phone').invalid && userEditForm.get('phone').touched }" 
+                      name="" id="" aria-describedby="helpId" placeholder="">
+                  <small id="helpId" class="form-text text-muted">Must be a valid Australian mobile number (####-###-###)</small>
+                </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>About Me</label>
+                <textarea class="form-control textarea" formControlName="about"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" [disabled]="!userEditForm.valid" class="btn btn-primary btn-round">Update Profile</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="fadeIn first">
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4 class="card-title">Feedback</h4></div>
+        <div class="card-body">
+          <div *ngIf="!showFeedback">No feedback to display.</div>
+          <div class="table-responsive" *ngIf="showFeedback">
+            <table class="table">
+              <thead class="text-primary">
+                <th>Date Logged</th>
+                <th>Feedback</th>
+               
+                <th>Logged By </th>
+ 
+                <th>Current Status</th>
+                <th>Actions</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of feedbackFiltered">
+                  <td>  {{ item.dateLogged.toDate() | date:'dd-MMM-y' }}  </td>
+                  <td> {{ item.feedback }} </td>
+                
+                  <td> {{ item.userLoggedFirstName }}  {{ item.userLoggedLastName }} </td>
+                      <td> 
+                      <span *ngIf="item.status == 'open'">  <i class="fa fa-circle text-success"></i> {{ item.status }} </span> 
+                      <span *ngIf="item.status == 'completed'">  <i class="fa fa-circle text-danger"></i> {{ item.status }} </span>
+                  </td>
+                  <td>  
+                       <app-update-feedback [feedback]="item"></app-update-feedback> 
+                      <br>
+                       <app-list-feedback-history [feedback]="item"> </app-list-feedback-history>  
+                   </td>
+                </tr>
+                
+              </tbody>
+            </table>
+            <nav *ngIf="totalPages > 1" aria-label="Page navigation ">
+              <ul class="pagination">
+                <li  class="page-item"><a class="page-link" *ngIf="currentPage != 1" (click)="previous()">Previous</a></li>
+                <li *ngFor="let in of counter(totalPages) ;let i = index" class="page-item"><a class="page-link" (click)="selectPage(i+1)">{{i + 1}} </a></li>
+    
+                <li class="page-item"><a class="page-link" *ngIf="currentPage != totalPages" (click)="next()">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

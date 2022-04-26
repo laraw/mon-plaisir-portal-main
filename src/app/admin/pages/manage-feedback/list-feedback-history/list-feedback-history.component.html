@@ -1,0 +1,50 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">View History</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="text-primary">
+            <th>Date Logged</th>
+            <th>Comment</th>
+            <th>Full name</th>
+            <th>Old status</th>
+            <th>New status</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comment of comments">
+              <td>{{ comment.commentDate.toDate() | date: "dd-MMM-y" }}</td>
+              <td>{{ comment.comment }}</td>
+              <td>{{ comment.firstName }} {{ comment.lastName }}</td>
+              <td>{{ comment.oldStatus }}</td>
+              <td>{{ comment.newStatus }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-light"
+        (click)="modal.close('Close click')"
+      > <i class="fa fa-times"></i>
+        Close
+      </button>
+    </div>
+  </ng-template>
+  
+  <a *ngIf="comments" (click)="openLg(content)" class="link">
+    <i class="fa fa-history"></i> View History
+  </a>
+  

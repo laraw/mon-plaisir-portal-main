@@ -1,0 +1,82 @@
+<ng-template #content let-modal>
+    <form [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> Add Comment </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+     
+      <div class="row">
+          <div class="col">
+                <div class="form-group">
+                  <label for="">First name </label>
+                  <input type="text" class="form-control" [ngClass]="{'is-invalid' : maintenanceForm.get('firstName').invalid && maintenanceForm.get('firstName').touched }" formControlName="firstName" aria-describedby="helpId" placeholder="">
+                  
+                </div>
+          </div>
+          <div class="col">
+               <div class="form-group">
+                  <label for="">Last name </label>
+                  <input type="text" class="form-control"  [ngClass]="{'is-invalid' : maintenanceForm.get('lastName').invalid && maintenanceForm.get('lastName').touched }" formControlName="lastName" aria-describedby="helpId" placeholder="">
+                  
+                </div>
+
+          </div>
+        
+         
+        
+      </div>
+
+      <div class="row">
+          <div class="col">
+              <div class="form-group">
+                <label for="">Comment</label>
+                <textarea class="form-control" formControlName="comment" [ngClass]="{'is-invalid' : maintenanceForm.get('comment').invalid && maintenanceForm.get('comment').touched }" name="" id="" rows="3"></textarea>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col">
+             <div class="form-group">
+               <label for="">New status </label>
+               <select class="form-control" formControlName="newStatus" [ngClass]="{'is-invalid' : maintenanceForm.get('comment').invalid && maintenanceForm.get('comment').touched }">
+                 <option>open</option>
+                 <option>completed</option>
+                 
+               </select>
+             </div>
+          </div>
+      </div>
+
+        
+
+     
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="!maintenanceForm.valid" >
+        <i class="fa fa-save"></i>  Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="modal.close('Close click')"
+        > <i class="fa fa-times"></i>
+          Close 
+        </button>
+      </div>
+    </form>
+    </ng-template>
+    
+
+         <a (click)="openLg(content)" class="link"> <i class="fa fa-comment"></i> Add Comment </a>
+   

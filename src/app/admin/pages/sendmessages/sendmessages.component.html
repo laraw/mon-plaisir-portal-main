@@ -1,0 +1,33 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Send Message</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+      <div class="form-group">
+        <label for="">Message</label>
+        <textarea class="form-control" [(ngModel)]="msg"></textarea>
+      </div>
+
+
+      <div class="form-group">
+        <label for="expireAfterDays">Expire</label>
+        <input type="number" class="form-control" [(ngModel)]="expireAfterDays" aria-describedby="helpId" placeholder="">
+        <small id="helpId" class="form-text text-muted">Defaults to 7 days</small>
+      </div>
+
+
+    </div>
+     
+  <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="sendMessage()"> <i class="fa fa-save"> </i>Save</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')"> <i class="fa fa-close"></i> Close</button>
+  </div>
+</ng-template>
+
+
+
+<button class="btn btn-primary" (click)="openLg(content)"> <i class="fa fa-envelope"></i> Send Message</button>

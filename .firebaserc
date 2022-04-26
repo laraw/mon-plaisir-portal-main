@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mon-plaisir-portal": {
+      "hosting": {
+        "mon-plaisir-portal": [
+          "mon-plaisir-portal"
+        ]
+      }
+    }
+  }
+}

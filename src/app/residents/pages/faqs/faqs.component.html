@@ -1,0 +1,27 @@
+<div class="fadeIn first">
+  <h2>  Faqs </h2>
+  <ngb-accordion *ngIf="faqs" #acc="ngbAccordion" activeIds="ngb-panel-0">
+      <ngb-panel *ngFor="let faq of faqs" title="{{faq.title}}  ">
+        <ng-template ngbPanelContent>
+            <div class="row">
+              
+                <div class="col">
+                  {{ faq.content }}
+                </div>
+  
+       
+          </div>
+  
+        
+        </ng-template>
+      </ngb-panel>
+  
+    </ngb-accordion>
+  
+    <div class="row" *ngIf="!hasFaq">
+        <div class="col">
+  
+          There are no FAQs published currently.
+        </div>
+    </div>
+</div>

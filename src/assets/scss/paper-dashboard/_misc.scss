@@ -1,0 +1,233 @@
+body{
+    color: $black-color;
+    font-size: $font-size-base;
+    font-family: $sans-serif-family;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+.main{
+    position: relative;
+    background: $white-color;
+}
+/* Animations */
+.nav-pills .nav-link,
+.navbar,
+.nav-tabs .nav-link,
+.sidebar .nav a,
+.sidebar .nav a i,
+.animation-transition-general,
+.tag,
+.tag [data-role="remove"],
+.animation-transition-general{
+    @include transition($general-transition-time, $transition-ease);
+}
+
+//transition for dropdown caret
+.dropdown-toggle:after,
+.bootstrap-switch-label:before,
+.caret{
+    @include transition($fast-transition-time, $transition-ease);
+}
+
+.dropdown-toggle[aria-expanded="true"]:after,
+a[data-toggle="collapse"][aria-expanded="true"] .caret,
+.card-collapse .card a[data-toggle="collapse"][aria-expanded="true"] i,
+.card-collapse .card a[data-toggle="collapse"].expanded i{
+    @include rotate-180();
+}
+
+.button-bar{
+    display: block;
+    position: relative;
+    width: 22px;
+    height: 1px;
+    border-radius: 1px;
+    background: $white-bg;
+
+    & + .button-bar{
+        margin-top: 7px;
+    }
+
+    &:nth-child(2){
+        width: 17px;
+    }
+}
+
+.caret{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
+}
+
+
+.offline-doc {
+  .navbar.navbar-transparent{
+    padding-top: 25px;
+    border-bottom: none;
+
+    .navbar-minimize {
+      display: none;
+    }
+    .navbar-brand,
+    .collapse .navbar-nav .nav-link {
+      color: $white-color !important;
+    }
+  }
+  .footer {
+    z-index: 3 !important;
+  }
+  .page-header{
+    .container {
+      z-index: 3;
+    }
+    &:after {
+      background-color: rgba(0, 0, 0, 0.5);
+      content: "";
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 2;
+    }
+  }
+}
+
+.fixed-plugin {
+  .dropdown-menu li {
+    padding: 2px !important;
+  }
+}
+
+// badge color
+
+.badge{
+  &.badge-default{
+      @include badge-color($default-color);
+  }
+  &.badge-primary{
+      @include badge-color($primary-color);
+  }
+  &.badge-info{
+      @include badge-color($info-color);
+  }
+  &.badge-success{
+      @include badge-color($success-color);
+  }
+  &.badge-warning{
+      @include badge-color($warning-color);
+  }
+  &.badge-danger{
+      @include badge-color($danger-color);
+  }
+  &.badge-neutral{
+      @include badge-color($white-color);
+      color: inherit;
+  }
+}
+
+.card-user {
+  form {
+    .form-group {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+  /* ANIMATIONS */
+  
+  /* Simple CSS3 Fade-in-down Animation */
+  .fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @-webkit-keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+    }
+  }
+  
+  /* Simple CSS3 Fade-in Animation */
+  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  
+  .fadeIn {
+    opacity:0;
+    -webkit-animation:fadeIn ease-in 1;
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+  
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+  
+    -webkit-animation-duration:0.8s;
+    -moz-animation-duration:0.8s;
+    animation-duration:0.8s;
+  }
+  
+  .fadeIn.first {
+    -webkit-animation-delay: 0.1s;
+    -moz-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+  }
+  
+  .fadeIn.second {
+    -webkit-animation-delay: 0.3s;
+    -moz-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+  }
+  
+  .fadeIn.third {
+    -webkit-animation-delay: 0.4s;
+    -moz-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+  }
+  
+  .fadeIn.fourth {
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    animation-delay: 1s;
+  }

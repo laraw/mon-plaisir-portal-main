@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+.logo-mini {
+    width: 100% !important;
+}
+
+.sub-heading {
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 1px 1px;
+    line-height: 20px;
+    color: #69A4BE;
+}

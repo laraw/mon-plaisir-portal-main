@@ -1,0 +1,69 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Create user</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col">
+        <label>Enter the Faq title*</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter the Faq title"
+          [(ngModel)]="title"
+        />
+        &nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>Enter the Faq content</label>
+          <!-- <input type="text-area" class="form-control text-area" placeholder="Enter the Faq content" [(ngModel)]="input"  > -->
+          <textarea
+            class="form-control textarea"
+            [(ngModel)]="input"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input
+          class="form-check-input form-control"
+          [(ngModel)]="publish"
+          type="checkbox"
+          value=""
+          id="publish"
+        />
+        <label class="form-check-label" for="publish">
+          <strong>Publish?</strong>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="addFaq()">
+    <i class="fa fa-save"></i>  Save
+    </button>
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    > <i class="fa fa-times"></i>
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="openLg(content)"><i class="fa fa-plus"></i> Add Faq</button>

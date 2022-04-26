@@ -1,0 +1,136 @@
+<ng-template #content let-modal>
+    <form [formGroup]="maintenanceForm" (ngSubmit)="onSubmit()"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> Create Maintenance  Request </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+     
+      <div class="row">
+          <div class="col">
+                <div class="form-group">
+                  <label for="">First name </label>
+                  <input type="text" class="form-control" [ngClass]="{'is-invalid' : maintenanceForm.get('firstName').invalid && maintenanceForm.get('firstName').touched }" formControlName="firstName" aria-describedby="helpId" placeholder="">
+                  
+                </div>
+          </div>
+          <div class="col">
+               <div class="form-group">
+                  <label for="">Last name </label>
+                  <input type="text" class="form-control"  [ngClass]="{'is-invalid' : maintenanceForm.get('lastName').invalid && maintenanceForm.get('lastName').touched }" formControlName="lastName" aria-describedby="helpId" placeholder="">
+                  
+                </div>
+
+          </div>
+        
+         
+        
+      </div>
+      <div class="row">
+          <div class="col">
+              <div class="form-group">
+                <label for="">Type</label>
+                <select class="form-control" formControlName="classification" [ngClass]="{'is-invalid' : maintenanceForm.get('classification').invalid && maintenanceForm.get('classification').touched }" >
+                  <option>General repairs</option>
+                  <option>Garage doors</option>
+                  <option>Bins</option>
+                  <option>Gates</option>
+                </select>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <div class="form-group">
+                <label for="">Description</label>
+                <textarea class="form-control" formControlName="description" [ngClass]="{'is-invalid' : maintenanceForm.get('description').invalid && maintenanceForm.get('description').touched }" name="" id="" rows="3"></textarea>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col">
+              <!-- <span class="badge badge-pill badge-danger">Is this an urgent request?</span> -->
+              <div class="form-check">
+                  <label class="form-check-label">
+                  <input type="radio" class="form-check-input" formControlName="priority" id="" value="isUrgent">
+                  Is this an urgent request?
+                </label>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+  
+            <label>Upload file</label>
+            <upload-file-component (fileCompleteUpload)="setMaintenancePhoto($event)" [incomingFileName]="maintenancePhotoName"></upload-file-component>
+      
+            <small id="helpId" class="form-text text-muted">Types accepted: .docx, .txt, .pdf, .png, .jpg </small>
+    
+    
+        </div>
+      </div>
+        
+
+     
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="!maintenanceForm.valid" >
+         <i class="fa fa-save"></i> Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="modal.close('Close click')"
+        >
+        <i class="fa fa-times"></i>
+          Close
+        </button>
+      </div>
+    </form>
+    </ng-template>
+    
+    <div class="card card-stats">
+    <div class="card-body ">
+      <div class="row">
+        <div class="col-5 col-md-4">
+          <div class="icon-big text-center icon-warning">
+            <i class="nc-icon nc-bulb-63 text-danger"></i>
+          </div>
+        </div>
+        <div class="col-7 col-md-8">
+          <div class="numbers">
+            Found an issue?
+          </div>
+          <div class="float-right">
+            Log a maintenance request. <br> <a [routerLink]="['/all-maintenance']" routerLinkActive="router-link-active">View outstanding requests</a> 
+          </div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer ">
+      <hr>
+      <div class="stats">
+         <a (click)="openLg(content)" class="link"> <i class="fa fa-wpforms"></i> Create a maintenance request </a>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+
+
+

@@ -1,0 +1,100 @@
+<ng-template #content let-modal>
+    <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()"> 
+    <div class="modal-header">
+      <h4 class="modal-title">  Feedback   </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        
+      
+     
+      <div class="row">
+          <div class="col">
+                <div class="form-group">
+                  <label for="">First name </label>
+                  <input type="text" class="form-control" [ngClass]="{'is-invalid' : feedbackForm.get('firstName').invalid && feedbackForm.get('firstName').touched }" formControlName="firstName" aria-describedby="helpId" placeholder="">
+                  
+                </div>
+          </div>
+          <div class="col">
+               <div class="form-group">
+                  <label for="">Last name </label>
+                  <input type="text" class="form-control"  [ngClass]="{'is-invalid' : feedbackForm.get('lastName').invalid && feedbackForm.get('lastName').touched }" formControlName="lastName" aria-describedby="helpId" placeholder="">
+                  
+                </div>
+
+          </div>
+        
+         
+        
+      </div>
+
+      <div class="row">
+          <div class="col">
+              <div class="form-group">
+                <label for="">Feedback</label>
+                <textarea class="form-control" formControlName="feedback" [ngClass]="{'is-invalid' : feedbackForm.get('feedback').invalid && feedbackForm.get('feedback').touched }" name="" id="" rows="3"></textarea>
+              </div>
+          </div>
+      </div>
+
+
+        
+
+     
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="!feedbackForm.valid" >
+          <i class="fa fa-save"></i> Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="modal.close('Close click')"
+        >
+        <i class="fa fa-times"></i>
+          Close
+        </button>
+      </div>
+    </form>
+    </ng-template>
+    
+    <div class="card card-stats">
+    <div class="card-body ">
+      <div class="row">
+        <div class="col-5 col-md-4">
+          <div class="icon-big text-center icon-warning">
+            <i class="nc-icon nc-email-85 text-primary"></i>
+          </div>
+        </div>
+        <div class="col-7 col-md-8">
+          <div class="numbers">
+             Have a suggestion?
+          </div>
+          <div class="float-right">
+            leave feedback to us.
+          </div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="card-footer ">
+      <hr>
+      <div class="stats">
+     
+        <a (click)="openLg(content)" class="link"> <i class="fa fa-reply"></i> Leave feedback  </a>
+      </div>
+    </div>
+  </div>

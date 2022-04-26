@@ -1,0 +1,49 @@
+<div class="fadeIn first"> <div class="row ">
+    <div class="col ">
+    <app-create-user></app-create-user>        
+    </div>
+    <div class="col">
+    
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h4 class="card-title">Users</h4></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table-shared *ngIf="gridData" [GridData]="gridData" [ColData]="colData" [recordsPerPage]="5" >
+              <a class="link" (click)="makeInactive()">Deactivate</a>
+            
+          </table-shared>
+
+          <!-- <table class="table">
+            <thead class="text-primary">
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Unit Number</th>
+             
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{ user.firstName }} {{ user.lastName }}  </td>
+                <td>{{ user.email }} </td>
+                <td>{{ user.UnitNo }} </td>
+                             </tr>
+              
+            </tbody>
+          </table>
+          <nav *ngIf="totalPages > 1" aria-label="Page navigation ">
+            <ul class="pagination">
+              <li  class="page-item"><a class="page-link" *ngIf="currentPage != 1" (click)="previous()">Previous</a></li>
+              <li *ngFor="let in of counter(totalPages) ;let i = index" class="page-item"><a class="page-link" (click)="selectPage(i+1)">{{i + 1}} </a></li>
+  
+              <li class="page-item"><a class="page-link" *ngIf="currentPage != totalPages" (click)="next()">Next</a></li>
+            </ul>
+          </nav> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

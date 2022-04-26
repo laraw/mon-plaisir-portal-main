@@ -1,0 +1,96 @@
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <h2> Bulletin Board </h2>
+          
+        </div>
+        <div class="row">
+            <div class="float-right">
+                <app-create-post (postAddedEvent)="refreshCategories()"></app-create-post>
+            </div>
+            
+            
+        </div>
+    </div>
+    <div class="container">
+       
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <!-- POST -->
+
+                <div class="card" *ngFor="let post of posts">
+                  
+                      <div class="card-body">
+                        <h3 class="card-subtitle text-muted">{{ post.title }}</h3>
+                        <div class="time float-left">
+                            <i class="fa fa-clock-o"></i> {{ getDisplayDate(post.datePosted) | date: 'dd-MM-yyyy' }}</div>  
+                        &nbsp;
+                        <div class="time float-right"> 
+                            <i class="fa fa-user"></i> {{ post.firstName }} {{ post.lastName }} </div>  
+                            &nbsp;
+                      </div>
+                      <img src="holder.js/100x180/" alt="">
+                      <div class="card-body">
+                        <p class="card-text">{{ post.content }}  </p>
+           
+                        &nbsp;
+                        <div *ngIf="post.fileURL">
+                            <h6>Files</h6>
+                            <app-get-file  [fileUrl]="post.fileURL"></app-get-file> 
+                        </div>
+                       
+                        &nbsp;
+                        <div>
+                            <h6>Contact</h6>
+                            <a class="card-linK" href="tel:{{post.contactPhone}}">
+                                <i class="fa fa-phone" aria-hidden="true"></i> {{post.contactPhone}}    </a>
+                                
+                        </div>
+
+                        <div class="row" *ngIf="isOwnPost(post)">
+                            <div class="col">
+                                <button class="btn btn-danger float-right" (click)="removePost(post)"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                       
+                      </div>
+                    
+                </div>
+
+               
+            </div>
+            <div class="col-lg-4 col-md-4">
+
+                <!-- -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">   <h3>Categories</h3> </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="divline"></div>
+                        <div class="blocktxt">
+                            <ul class="cats">
+                                <li *ngFor="let category of categoryResult"><a class="link" (click)="filterCategory(category.category)">{{ category.category }} </a> <span class="badge pull-right"> {{ category.count }} </span></li>
+                 
+                                                   </ul>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</section>

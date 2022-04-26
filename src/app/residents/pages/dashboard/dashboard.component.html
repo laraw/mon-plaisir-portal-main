@@ -1,0 +1,151 @@
+<!-- <div *ngIf="auth.user$ | async; then authenticated else guest">
+    
+</div>
+
+ User NOT logged in -->
+<!-- <ng-template #guest>
+<h3>Howdy, GUEST</h3>
+<p>Login to get started...</p>
+
+<button (click)="auth.googleSignin()">
+  <i class="fa fa-google"></i> Connect Google
+</button>
+
+</ng-template> -->
+
+
+<!-- User logged in -->
+<!-- <ng-template #authenticated>
+<div *ngIf="auth.user$ | async as user">
+  <h3>Hello, {{ user.displayName }}</h3>
+  <p> What would you like to do today? </p>
+ 
+
+</div>
+<div class="card">
+    Test
+</div>
+</ng-template> -->
+
+<div class="fadeIn first ">
+  
+
+<div class="row">
+  <div class="col">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <h5>Welcome, {{ user.displayName }} </h5>
+        </div>
+      </div>
+      <div class="card-body">
+
+        <p> What would you like to do today? </p>
+        <!-- <button class="btn btn-primary" (click)="subscribeToNotifications()">Subscribe </button> -->
+            </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="showMessages" class="row">
+  <div class="col">
+
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Messages</h5>
+      </div>
+      <div class="card-body">
+
+
+    
+          
+          <ul class="list-unstyled team-members">
+            <li *ngFor="let message of messages">
+              <div *ngIf="!userReadMessage(message)" class="row">
+                <div class="col-md-2 col-2">
+                   <i class="fa fa-comment-o"></i> 
+                </div>
+                <div class="col-md-7 col-7">  {{ message.message }} <br><span class="text-muted"><small> {{ convertTimestampDate(message.messageDate) | date: 'dd-MM-YYYY '  }} </small></span></div>
+                <div class="col-md-3 col-3 text-right"><button
+                    class="btn btn-sm btn-outline-success btn-round btn-icon" (click)="markAsRead(message)">  <i class="fa fa-check"></i>  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <app-booking></app-booking>
+
+  </div>
+  <div class="col">
+    <app-view-bookings [showOwn]="true"></app-view-bookings>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-lg-6 col-md-6 col-sm-6">
+
+    <app-create-maintenance></app-create-maintenance>
+  </div>
+
+
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <app-bulletin-board-card></app-bulletin-board-card>
+    <!-- <div class="card card-stats">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-5 col-md-4">
+            <div class="icon-big text-center icon-warning">
+              <i class="nc-chat-33 nc-icon text-primary"></i>
+            </div>
+          </div>
+          <div class="col-7 col-md-8">
+            <div class="numbers">
+              Bulletin board
+            </div>
+            <div class="float-right">
+              there are 3 new bulletin board posts
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="card-footer ">
+        <hr>
+        <div class="stats">
+       
+          <a [routerLink]="['/bulletin-board']" routerLinkActive="router-link-active"  class="link"> <i class="fa fa-reply"></i> View bulletin board </a>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <app-register-meeting></app-register-meeting>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-sm-6">
+    <app-create-feedback></app-create-feedback>
+  </div>
+</div>
+
+
+</div>

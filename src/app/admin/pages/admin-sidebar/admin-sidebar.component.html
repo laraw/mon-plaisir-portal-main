@@ -1,0 +1,27 @@
+
+<div class="sidebar-wrapper">
+  <div class="logo">
+    <a href="" class="simple-text logo-mini">
+      <div class="">
+        <img height="150" src="assets/img/logo.png">
+      </div>
+    </a>
+
+  </div>
+ 
+
+    <div class="sub-heading text-center"> ADMIN  </div>
+    <ul  class="nav">
+
+      <li *ngFor="let menuItem of adminItems" routerLinkActive="active" class="{{menuItem.class}}">
+        <a [routerLink]="[menuItem.path]">
+            <i class="{{menuItem.icon}}"></i>
+            <p>{{menuItem.title}}</p>
+        </a>
+       </li>
+
+      
+      
+  </ul>
+
+</div>

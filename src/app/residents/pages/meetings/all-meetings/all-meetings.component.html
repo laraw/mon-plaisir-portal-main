@@ -1,0 +1,45 @@
+
+<div class="row fadeIn first">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h4 class="card-title">All Meetings</h4></div>
+      <div class="card-body">
+        <div *ngIf="!showMeetings">No meetings to display.</div>
+        <div class="table-responsive" *ngIf="showMeetings">
+          <table class="table">
+            <thead class="text-primary">
+              <th>Date</th>
+              <th>Time</th>
+              <th>Description </th>
+             
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let meeting of meetingsFiltered">
+                <td>{{ meeting.meetingDate.toDate() | date:'dd-MMM-y' }}  </td>
+                <td> {{ meeting.meetingTime }} </td>
+                <td>  {{  meeting.description }} {{ meeting.location }} </td>
+                <td>
+                    <div *ngIf="meeting.minutesUrl">
+                        <button disabled class="btn btn-sm btn-outline-success btn-round btn-icon" ><i class="fa fa-download"></i> </button> 
+                        <app-get-file [fileUrl]="meeting.minutesUrl"> </app-get-file>
+                      </div>
+                    
+                    </td>
+              </tr>
+              
+            </tbody>
+          </table>
+          <nav *ngIf="totalPages > 1" aria-label="Page navigation ">
+            <ul class="pagination">
+              <li  class="page-item"><a class="page-link" *ngIf="currentPage != 1" (click)="previous()">Previous</a></li>
+              <li *ngFor="let in of counter(totalPages) ;let i = index" class="page-item"><a class="page-link" (click)="selectPage(i+1)">{{i + 1}} </a></li>
+  
+              <li class="page-item"><a class="page-link" *ngIf="currentPage != totalPages" (click)="next()">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

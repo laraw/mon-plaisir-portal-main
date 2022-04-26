@@ -1,0 +1,72 @@
+<div class="fadeIn first">
+  
+<h2> Manage Meetings </h2>
+<ngb-accordion *ngIf="meetings" #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel *ngFor="let meeting of meetings" title="{{meeting.description}} {{ meeting.meetingDate.toDate() | date:'dd-MMM-yyyy' }} {{ meeting.meetingTime }} ">
+      <ng-template ngbPanelContent>
+          <div class="row">
+              <div class="col">
+                  <h3> Date & time </h3>
+                  <ul>
+                    <li>{{ meeting.meetingDate.toDate() | date:'dd-MMM-y' }}  {{ meeting.meetingTime }}  </li>
+
+                  </ul>
+                   
+                   
+              </div>
+          </div>
+          <div class="row">
+
+              <div class="col">
+
+                <h3> Attendees </h3>
+                <div *ngIf="!meeting.attendees"> No attendees yet. </div>
+                <ul>
+                    <li *ngFor="let attendee of meeting.attendees">
+                                {{ attendee.firstName }}  {{ attendee.lastName }}
+                    </li>
+                </ul>
+              </div>
+
+          </div>
+          <div *ngIf="meeting.minutesUrl" class="row">
+              <div class="col">
+                  <h3> Minutes </h3>
+                  
+                  <app-get-file [fileUrl]="meeting.minutesUrl"></app-get-file>
+                  <span *ngIf="meeting.status == 'Completed'" class="badge badge-primary float-right"> Completed meeting </span>
+                  <span  *ngIf="meeting.status == 'Planned'" class=" badge badge-secondary float-right">Planned meeting</span>
+                  <span *ngIf="meeting.status == 'Cancelled'" class=" badge badge-danger float-right">Cancelled </span>
+              </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col">
+              <span class="badge badge-primary float-right" *ngIf="faq.publish">Published</span>
+              <span class=" badge badge-secondary float-right" *ngIf="!faq.publish">Draft</span>
+            </div>
+        </div>
+          <div class="row">
+              <div class="col">
+                 <button class="btn btn-secondary float-right"><i class="fa fa-pencil"> </i> Edit </button>  -->
+                <!-- <app-edit-faq [faq]="faq"></app-edit-faq>
+                <button class="btn btn-danger float-right" (click)="removeFaq(faq)"><i class="fa fa-trash"></i>Remove Faq</button>
+                
+              </div>
+          </div>  -->
+          <div class="row">
+              <div class="col">
+                <app-edit-meeting [meeting]="meeting"></app-edit-meeting>
+                <!-- <button class="btn btn-danger float-right" (click)="removeMeeting(meeting)"><i class="fa fa-trash"></i>Remove Meeting</button> -->
+              </div>
+
+          </div>
+        
+      
+      </ng-template>
+    </ngb-panel>
+
+  </ngb-accordion>
+
+  <app-create-meeting></app-create-meeting>
+
+</div>

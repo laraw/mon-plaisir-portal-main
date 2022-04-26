@@ -1,0 +1,27 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <i class="fa fa-user" aria-hidden="true"></i>
+      </div>
+  
+      <!-- Login Form -->
+      <form>
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" #userName required>
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" #userPassword required>
+        <input type="submit" class="fadeIn fourth" (click)="authService.emailSignup(userName.value, userPassword.value)" value="Register">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" [routerLink]="['/login']" routerLinkActive="router-link-active" >Already registered? Login</a>
+      </div>
+  
+    </div>
+  </div>
+  
+    
+  
+    

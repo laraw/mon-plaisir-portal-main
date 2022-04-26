@@ -1,0 +1,130 @@
+
+
+  <ng-template #content let-modal>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
+    <div class="modal-header">
+      <h4 class="modal-title"> Register </h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <div class="row">
+        <div class="col">
+          <h5> Meeting: {{ nextMeeting.description }} </h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ul>
+             <li> Date: {{ nextMeeting.meetingDate.toDate() | date:'dd-MMM-y' }}  </li> 
+             <li> Time: {{ nextMeeting.meetingTime }}  </li> 
+             <li> Location: {{ nextMeeting.location }}  </li> 
+            </ul>
+        </div>
+      </div>
+      <div class="row">
+        
+          <div class="col">
+            <div class="form-group">
+              <label for="">Enter your first name</label>
+              <input type="text" class="form-control" [ngClass]="{'is-invalid' : registerForm.get('firstName').invalid && registerForm.get('firstName').touched }"  formControlName="firstName" aria-describedby="helpId" placeholder="" required>
+              <!-- <small id="helpId" class="form-text text-muted">Enter your first name</small> -->
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for=""> Enter your last name </label>
+              <input type="text" class="form-control" [ngClass]="{'is-invalid' : registerForm.get('lastName').invalid && registerForm.get('lastName').touched }"  formControlName="lastName"  aria-describedby="helpId" placeholder="" required>
+              <!-- <small id="helpId" class="form-text text-muted">Enter your last name</small> -->
+            </div>
+          </div>
+        
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+              Yes, I will attend this meeting.
+            </label>
+          </div> 
+
+        </div>
+    
+      </div>
+
+        
+
+     
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">
+          <i class="fa fa-save"></i>Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="modal.close('Close click')"
+        >
+        <i class="fa fa-times"></i>
+          Close
+        </button>
+      </div>
+    </form>
+    </ng-template>
+
+
+
+<div class="card card-stats">
+    <div class="card-body ">
+      <div class="row">
+        <div class="col-5 col-md-4">
+          <div class="icon-big text-center icon-warning">
+            <i class="nc-icon nc-bullet-list-67 text-primary"></i>
+          </div>
+        </div>
+        <div class="col-7 col-md-8">
+          <div class="numbers" >
+            Next meeting: 
+          </div>
+          <div class="float-right">
+          <span *ngIf="nextMeeting">
+
+           {{ nextMeeting.meetingDate.toDate() | date:'dd-MMM-y' }}  {{ nextMeeting.meetingTime }}
+          </span>  
+          <span *ngIf="!nextMeeting">
+            No upcoming meetings.
+            &nbsp; 
+            &nbsp;
+          </span>
+          </div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="card-footer ">
+      <hr>
+      <div class="stats" *ngIf="nextMeeting">
+        <div *ngIf="userAttended">  <a class="link" (click)="unregister()"> <i class="fa fa-check"></i> Unregister attendance</a> </div>
+        <div *ngIf="!userAttended">   <a class="link" (click)="openLg(content)"> <i class="fa fa-check"></i> Register attendance</a> </div>
+        
+      </div>
+      <div class="stats" *ngIf="!nextMeeting">
+        <a [routerLink]="['/all-meetings']" routerLinkActive="router-link-active"> <i class="fa fa-history"></i> View past meetings</a>
+      </div>
+    </div>
+  </div>
+
+

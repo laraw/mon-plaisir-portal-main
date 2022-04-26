@@ -1,0 +1,47 @@
+
+<div class="row fadeIn first">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header"><h4 class="card-title">Your Gym Bookings</h4></div>
+        <div class="card-body">
+          <div *ngIf="userBookings.length <= 0">You have no upcoming bookings.
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+          </div>
+          <table class="table" *ngIf="userBookings.length > 0">
+            <thead class="text-primary">
+                <th>Booking Date</th>
+                <th>Booking Time</th>
+                <th>Actions</th>
+               
+    
+        
+              </thead>
+              <tbody>
+                <tr *ngFor="let booking of userBookings">
+                    <td>{{ booking.bookingDate.toDate().toString() | date: 'dd-MM-yyyy' }}</td>
+                    <td> {{ booking.startTime }}   </td>
+                    <td> 
+                      <span *ngIf="booking.checkedIn && booking.checkedOut"> Booking completed. </span>
+                      <a class="link" *ngIf="!booking.checkedIn && !booking.checkedOut" (click)="checkIn(booking)"> <i class="fa fa-sign-in" aria-hidden="true"></i> Check In</a> 
+                      <a class="link" *ngIf="booking.checkedIn && !booking.checkedOut" (click)="checkOut(booking)"> <i class="fa fa-sign-out" aria-hidden="true"></i>  Check Out</a>
+                      
+                       <br>  
+                    </td>
+
+              
+                </tr>
+              </tbody>
+          
+        
+        
+        </table>
+
+        <div class="float-right"><a class="link" [routerLink]="['/all-bookings']" routerLinkActive="router-link-active" >View all bookings</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

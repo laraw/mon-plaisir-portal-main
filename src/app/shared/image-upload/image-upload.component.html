@@ -1,0 +1,25 @@
+
+ 
+   
+   
+   <img class="avatar border-gray" *ngIf="showImage"  src="{{ downloadLink | async }}" alt="...">
+   <img class="avatar border-gray" *ngIf="!showImage"  src="assets/img/logo-small.png"  alt="...">
+  <!-- <span class="avatar border-gray ">
+       <span data-initials=""  class="{{contactInitials}}"></span>
+  </span> -->
+    <br>
+    <br>
+    <label for="file-upload" class="custom-file-upload">
+ <i class="fa fa-pencil"></i> Change profile image  
+        <input id="file-upload" type="file" (change)="uploadFile($event)"> 
+    </label>
+
+<!-- 
+    <img [src]="downloadURL | async" >  -->
+  
+
+
+
+
+
+<!-- <a [href]="downloadURL | async">{{ downloadURL | async }}</a> -->

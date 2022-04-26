@@ -1,0 +1,96 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Create Meeting</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col">
+        <label> Meeting date: </label>
+        <ngbd-datepicker-popup (dateChangeEvent)="dateSelected($event)" ></ngbd-datepicker-popup>
+     
+        <!-- <hr/> -->
+        <!-- <pre>Model: {{ model | json }}</pre>  -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+      
+        <div class="form-group">
+            <label> Meeting time: </label>
+            <ngb-timepicker
+            [(ngModel)]="time"
+         
+            size="small"
+          ></ngb-timepicker>
+        </div>
+
+        <!-- <hr>
+                <pre>Selected time: {{time | json}}</pre> -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+
+          
+
+          <div class="form-group">
+            <label for="description"> Enter the meeting description </label>
+            <input type="text"
+              class="form-control" name="description" [(ngModel)]="description" id="" aria-describedby="helpId" placeholder="">
+            <small id="helpId" class="form-text text-muted"> (Leave bank to default to body
+                corporate)</small>
+          </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+          <div class="form-group">
+            <label for="location">Enter the meeting location </label>
+            <input type="text"
+              class="form-control" name="location" [(ngModel)]="location" aria-describedby="helpId" placeholder="">
+            <small id="helpId" class="form-text text-muted">(Leave bank to default to gym)</small>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+              <label for="">Meeting status</label>
+              <select class="form-control" [(ngModel)]="status" >
+                <option>Planned</option>
+                <option>Completed</option>
+                <option>Cancelled</option>
+              </select>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="addMeeting()">
+     <i class="fa fa-save"></i> Save
+    </button>
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+    <i class="fa fa-times"></i>
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="openLg(content)"> <i class="fa fa-plus"></i> Add Meeting</button>

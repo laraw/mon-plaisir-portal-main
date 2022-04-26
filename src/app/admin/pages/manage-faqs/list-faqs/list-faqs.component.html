@@ -1,0 +1,38 @@
+<div class="fadeIn first">
+
+<h2> Manage Faqs </h2>
+<ngb-accordion *ngIf="faqs" #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel *ngFor="let faq of faqs" title="{{faq.title}}  ">
+      <ng-template ngbPanelContent>
+          <div class="row">
+            
+              <div class="col">
+                {{ faq.content }}
+              </div>
+
+          </div>
+          <div class="row">
+            <div class="col">
+              <span class="badge badge-primary float-right" *ngIf="faq.publish">Published</span>
+              <span class=" badge badge-secondary float-right" *ngIf="!faq.publish">Draft</span>
+            </div>
+        </div>
+          <div class="row">
+              <div class="col">
+                <!-- <button class="btn btn-secondary float-right"><i class="fa fa-pencil"> </i> Edit </button>  -->
+                <app-edit-faq [faq]="faq"></app-edit-faq>
+                <button class="btn btn-danger float-right" (click)="removeFaq(faq)"><i class="fa fa-trash"></i>Remove Faq</button>
+                
+              </div>
+          </div>
+        
+      
+      </ng-template>
+    </ngb-panel>
+
+  </ngb-accordion>
+
+  
+  <app-create-faq></app-create-faq>
+
+</div>

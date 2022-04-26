@@ -1,0 +1,55 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Create user</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="">Email address</label>
+            <input type="text"
+              class="form-control" [(ngModel)]="email" name="" id="" aria-describedby="helpId" placeholder="">
+
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="">Unit No</label>
+            <input type="text"
+              class="form-control" [(ngModel)]="unitNo" name="" id="" aria-describedby="helpId" placeholder="">
+          </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="">First name</label>
+              <input type="text"
+                class="form-control" [(ngModel)]="firstName" name="" id="" aria-describedby="helpId" placeholder="">
+             
+            </div>
+          </div>
+          <div class="col">
+             <div class="form-group">
+               <label for="">Last name</label>
+               <input type="text"
+                 class="form-control" [(ngModel)]="lastName" name="" id="" aria-describedby="helpId" placeholder="">
+            
+             </div>
+          </div>
+        </div>
+      </div>
+       
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="inviteUser()"><i class="fa fa-save"></i>Save</button>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')"><i class="fa fa-times"></i>Close</button>
+    </div>
+  </ng-template>
+  
+  
+
+  <button class="btn btn-primary" (click)="openLg(content)"><i class="fa fa-plus"> </i>Invite user</button>
+<app-sendmessages></app-sendmessages>

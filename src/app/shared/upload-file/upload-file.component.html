@@ -1,0 +1,16 @@
+
+
+         
+
+            <input type="file" (change)="uploadFile($event)"> 
+            <a [href]="downloadURL | async"> {{ fileName  }} </a>
+            <br>
+            <progress  max="100" [value]="(uploadPercent | async)"></progress>
+       
+
+
+
+
+
+
+<!-- <a [href]="downloadURL | async">{{ downloadURL | async }}</a> -->

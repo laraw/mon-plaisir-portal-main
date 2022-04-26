@@ -1,0 +1,102 @@
+<ng-template #content let-modal>
+    <form [formGroup]="postForm">
+        <div class="modal-header">
+            <h4 class="modal-title">Create Post</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="">First name</label>
+                        <input type="text" class="form-control" [ngClass]="{'is-invalid' : postForm.get('firstName').invalid && postForm.get('firstName').touched }" formControlName="firstName" name="" id="" aria-describedby="helpId" placeholder="">
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="">Last name</label>
+                        <input type="text" class="form-control" [ngClass]="{'is-invalid' : postForm.get('lastName').invalid && postForm.get('lastName').touched }"  formControlName="lastName" name="" id="" aria-describedby="helpId" placeholder="">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="">Title</label>
+                        <input type="text" class="form-control"  [ngClass]="{'is-invalid' : postForm.get('title').invalid && postForm.get('title').touched }" formControlName="title" id="" aria-describedby="helpId"
+                            placeholder="" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="">Category</label>
+                        <select class="form-control" name="" [ngClass]="{'is-invalid' : postForm.get('category').invalid && postForm.get('category').touched }" formControlName="category" id="">
+                            <option>Furniture for sale</option>
+                            <option>Services</option>
+                            <option>Free items</option>
+                            <option>Looking for assistance</option>
+                            <option>Local event</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="">Content</label>
+                        <textarea formControlName="content" class="form-control" name="" [ngClass]="{'is-invalid' : postForm.get('content').invalid && postForm.get('content').touched }" id="" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="">Phone</label>
+                        <input type="text" [ngClass]="{'is-invalid' : postForm.get('phone').invalid && postForm.get('phone').touched }" id="" rows="3" class="form-control" name="" formControlName="phone" id="" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted">Enter a mobile or home phone with area
+                            code.</small>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                      <label for="">Expires after (days):</label>
+                      <input type="text"
+                        class="form-control" value="7" formControlName="expiryDays" [ngClass]="{'is-invalid' : postForm.get('expiryDays').invalid && postForm.get('expiryDays').touched }"  name="" id="" aria-describedby="helpId" placeholder="">
+                      <small id="helpId" class="form-text text-muted">Number must be between 1 and 30.</small>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="row">
+                <div class="col">
+          
+                    <label>Upload files</label>
+                    <upload-file-component (fileCompleteUpload)="setPostUpload($event)" [incomingFileName]="fileName"></upload-file-component>
+              
+                    <small id="helpId" class="form-text text-muted">Types accepted: .docx, .txt, .pdf, .png, .jpg </small>
+            
+            
+                </div>
+              </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" [disabled]="!postForm.valid" class="btn btn-primary" (click)="savePost()">
+               <i class="fa fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+              <i class="fa fa-times"></i>  Close
+            </button>
+        </div>
+    </form>
+</ng-template>
+
+<button class="btn btn-primary" (click)="openLg(content)">
+    <i class="fa fa-comment"></i> Create Post
+</button>

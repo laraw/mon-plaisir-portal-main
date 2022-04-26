@@ -1,0 +1,31 @@
+<div class="card card-stats">
+    <div class="card-body ">
+      <div class="row">
+        <div class="col-5 col-md-4">
+          <div class="icon-big text-center icon-warning">
+            <i class="nc-chat-33 nc-icon text-primary"></i>
+          </div>
+        </div>
+        <div class="col-7 col-md-8">
+          <div class="numbers">
+            Bulletin board
+          </div>
+          <div class="float-right">
+            there are {{ newPostCount }} new bulletin board posts
+          </div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="card-footer ">
+      <hr>
+      <div class="stats">
+     
+        <a [routerLink]="['/bulletin-board']" routerLinkActive="router-link-active"  class="link"> <i class="fa fa-reply"></i> View bulletin board </a>
+      </div>
+    </div>
+  </div>
